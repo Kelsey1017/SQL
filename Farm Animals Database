@@ -1,0 +1,45 @@
+/**Farm_Animals:
+Cows (6)
+Dogs (2)
+Chckens (6)
+Cats (4)
+Kittens (2)
+Goats (4)
+Sheep (3)
+Pigs (9)
+Horses (5)
+Donkey (1)
+Geese (3)
+Llama (1)
+Ostrich (1)
+Duck (7)
+Pheasant (7)
+**/
+
+CREATE TABLE Farm_Animals (id INTEGER PRIMARY KEY, Animal TEXT, Quantity INTEGER, Price INTEGER, Feeding TEXT, Pasture INTEGER);
+
+INSERT INTO Farm_Animals VALUES (1, "Cows", 6, 1700, "AM", 1);
+INSERT INTO Farm_Animals VALUES (2, "Dogs", 2, 20, "AM_PM", 0);
+INSERT INTO Farm_Animals VALUES (3, "Chickens", 5, 25, "AM", 5);
+INSERT INTO Farm_Animals VALUES (4, "Cats", 4, 5, "PM", 0);
+INSERT INTO Farm_Animals VALUES (5, "Kittens", 5, 0, "AM_PM", 0);
+INSERT INTO Farm_Animals VALUES (6, "Goats", 4, 500, "PM", 3);
+INSERT INTO Farm_Animals VALUES (7, "Sheep", 3, 250, "PM", 3);
+INSERT INTO Farm_Animals VALUES (8, "Pigs", 9, 300, "AM_PM", 4);
+INSERT INTO Farm_Animals VALUES (9, "Horses", 5, 2500, "AM_PM", 2);
+INSERT INTO Farm_Animals VALUES (10, "Donkey", 1, 1000, "AM_PM", 2);
+INSERT INTO Farm_Animals VALUES (11, "Geese", 3, 100, "AM", 5);
+INSERT INTO Farm_Animals VALUES (12, "Llama", 1, 1500, "AM_PM", 2);
+INSERT INTO Farm_Animals VALUES (13, "Ostrich", 1, 750, "AM", 6);
+INSERT INTO Farm_Animals VALUES (14, "Duck", 7, 50, "AM", 5);
+INSERT INTO Farm_Animals VALUES (15, "Pheasant", 7, 50, "AM", 5);
+
+--Putting price of animals in order by price
+SELECT * FROM Farm_Animals ORDER BY Price;
+
+--Adding the amount of farm animals. 
+SELECT sum(quantity) FROM Farm_Animals;
+
+--Organizing prices of which animals over $400
+SELECT animal FROM Farm_Animals
+WHERE price > 400;
