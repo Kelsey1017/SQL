@@ -1,0 +1,89 @@
+/* Create table about the people and what they do here */
+CREATE TABLE Kardashians(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    age INTEGER);
+    
+INSERT INTO Kardashians (name, age) VALUES ("Kourtney Kardashian", "43");
+INSERT INTO Kardashians (name, age) VALUES ("Kim Kardashian", "41");
+INSERT INTO Kardashians (name, age) VALUES ("Khloe Kardashian", "37");
+INSERT INTO Kardashians (name, age) VALUES ("Rob Kardashian", "35");
+INSERT INTO Kardashians (name, age) VALUES ("Kendall Jenner", "25");
+INSERT INTO Kardashians (name, age) VALUES ("Kylie Jenner", "24");
+
+CREATE TABLE Dating(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    kardashian_id INTEGER,
+    famous_reason TEXT);
+
+INSERT INTO Dating (name, kardashian_id, famous_reason) VALUES ("Travis Barker", "1", "drummer");
+INSERT INTO Dating (name, kardashian_id, famous_reason) VALUES ("Pete Davidson", "2", "comedian");
+INSERT INTO Dating (name, kardashian_id, famous_reason) VALUES ("Tristan Thompson", "3", "basketball");
+INSERT INTO Dating (name, kardashian_id, famous_reason) VALUES ("Unknown", "4", "null");
+INSERT INTO Dating (name, kardashian_id, famous_reason) VALUES ("Devin Booker", "5", "basketball");
+INSERT INTO Dating (name, kardashian_id, famous_reason) VALUES ("Travis Scott", "6", "musician");
+
+CREATE TABLE Kids(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    kardashian_id INTEGER,
+    kardashian_parent TEXT,
+    coparent TEXT,
+    coparent_id INTEGER);
+
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Mason", "1", "Kourtney", "Scott Disick", "2");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Penelope", "1", "Kourtney", "Scott Disick", "2");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Reign", "1", "Kourtney", "Scott Disick", "2");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("North", "2", "Kim", "Kanye West", "1");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Chicago", "2", "Kim", "Kanye West", "1");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("North", "2", "Kim", "Kanye West", "1");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Psalm", "2", "Kim", "Kanye West", "1");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Saint", "2", "Kim", "Kanye West", "1");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("True", "3", "Khloe", "Tritan Thompson", "4");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Dream", "4", "Rob", "Black Chyna", "3");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Stormy", "6", "Kylie", "Travis Scott", "5");
+INSERT INTO Kids (name, kardashian_id, kardashian_parent, coparent, coparent_id) VALUES ("Unknown", "6", "Kylie", "Travis Scott", "5");
+
+CREATE TABLE coparents(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    kardashian_id INTEGER);
+INSERT INTO coparents (name, kardashian_id) VALUES ("Kanye West", "2");
+INSERT INTO coparents (name, kardashian_id) VALUES ("Scott Disick", "1");
+INSERT INTO coparents (name, kardashian_id) VALUES ("Black Chyna", "4");
+INSERT INTO coparents (name, kardashian_id) VALUES ("Tristan Thompson", "3");
+INSERT INTO coparents (name, kardashian_id) VALUES ("Travis Scott", "6");
+    
+    
+
+SELECT * FROM Kardashians;
+SELECT * FROM Dating;
+SELECT * FROM Kids;
+SELECT * FROM coparents;
+SELECT Kids.id, Kids.name, coparent_id FROM Kids;
+
+/*cross join*/
+SELECT * FROM Kardashians, Kids;
+
+/*implicit inner join*/
+SELECT * FROM Kids, Kardashians
+    WHERE Kids.kardashian_id = kardashians.id;
+
+/*explicit inner join*/
+SELECT Kardashians.name, Kids.name, Kids.coparent
+    FROM Kardashians
+    JOIN Kids
+    ON Kardashians.id = Kids.kardashian_id;
+    
+/*outer join*/
+SELECT Kardashians.name, Dating.name
+FROM Kardashians
+LEFT OUTER JOIN Dating
+ON Kardashians.id = Dating.kardashian_id;
+
+/*self join*/
+SELECT Kids.name, Kids.coparent, Kids.kardashian_parent
+    FROM Kids
+    JOIN Kids Parents
+    ON kids.kardashian_id = parents.id;
