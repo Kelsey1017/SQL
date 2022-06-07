@@ -1,0 +1,23 @@
+/*Creating table to show table update and delete qeuries*/
+
+CREATE TABLE dexcom(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    blood_sugar INTEGER,
+    shared_with TEXT,
+    low_alarm_time TEXT);
+    
+INSERT INTO dexcom (blood_sugar, shared_with) VALUES ("84", "mom");
+INSERT INTO dexcom (blood_sugar, shared_with, low_alarm_time) VALUES ("96", "husband", "4:50AM");
+INSERT INTO dexcom (blood_sugar, shared_with) VALUES ("50", "dad");
+
+SELECT * FROM dexcom;
+
+/*updating that the low blood sugar alarm time was fixed with Skittles*/
+UPDATE dexcom SET low_alarm_time = "4:50AM-SKITTLES" WHERE id = 2;
+
+SELECT * FROM dexcom;
+
+/*deleting all of id row 3*/
+DELETE FROM dexcom WHERE id = 3;
+
+SELECT * FROM dexcom;
