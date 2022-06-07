@@ -1,0 +1,28 @@
+/* number of movie titles in the database, not including TV shows*/
+select count(*) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type='Movie';
+
+/*most recent batch of tv shows and/or movies added*/
+select max(date(date_added))
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info";
+
+/*movies and tv shows in alphabetical order*/
+select title
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+ORDER BY title asc;
+
+/*Bright Star director*/
+select director
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info" titles
+LEFT JOIN  "CharlotteChaze/BreakIntoTech"."netflix_people" people
+ON titles.show_id=people.show_id
+where titles.title='Bright Star'
+
+/*oldest movie*/
+select title, min(release_year) 
+FROM "CharlotteChaze/BreakIntoTech"."netflix_titles_info"
+WHERE type='Movie'
+GROUP BY title, release_year
+ORDER BY release_year asc
+LIMIT 1;
