@@ -1,0 +1,33 @@
+SELECT *
+FROM village;
+
+SELECT * 
+FROM inhabitant;
+
+SELECT * 
+FROM inhabitant 
+WHERE state = 'friendly';
+
+SELECT * FROM inhabitant WHERE state = 'friendly' AND job = 'weaponsmith'
+
+SELECT * FROM inhabitant WHERE state = 'friendly' AND job LIKE '%smith'
+
+SELECT personid FROM inhabitant WHERE personid = '20'
+
+SELECT gold FROM inhabitant WHERE personid = '20'
+
+SELECT * FROM item WHERE owner IS null
+
+UPDATE item SET owner = 20 WHERE owner IS null
+
+SELECT * FROM item WHERE owner = '20'
+
+SELECT * FROM inhabitant WHERE state = 'friendly' AND (job ='merchant' OR job ='dealer')
+
+UPDATE item SET owner = 15 WHERE item = 'ring' OR item = 'teapot'
+
+UPDATE inhabitant SET name = 'Paul'
+
+SELECT * FROM inhabitant WHERE job = 'baker' ORDER BY gold DESC
+
+SELECT * FROM inhabitant WHERE job = 'pilot'
